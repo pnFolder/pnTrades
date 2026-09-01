@@ -9,12 +9,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 final class GitHubUpdateClient {
-    static final String DEFAULT_DOWNLOAD_URL = "https://github.com/Dy6HiLa/pnTrades/releases/latest";
+    static final String DEFAULT_DOWNLOAD_URL = "https://github.com/pnFolder/pnTrades/releases/latest";
     private static final Pattern VERSION = Pattern.compile("\"version\"\\s*:\\s*\"v?([^\"]+)\"");
     private static final Pattern DOWNLOAD = Pattern.compile("\"downloadUrl\"\\s*:\\s*\"([^\"]+)\"");
 
     UpdateInfo fetchLatest() throws Exception {
-        String manifest = fetch("https://raw.githubusercontent.com/Dy6HiLa/pnTrades/master/update-manifest.json");
+        String manifest = fetch("https://raw.githubusercontent.com/pnFolder/pnTrades/master/update-manifest.json");
         Matcher version = VERSION.matcher(manifest);
         if (!version.find()) return new UpdateInfo(null, DEFAULT_DOWNLOAD_URL);
         Matcher download = DOWNLOAD.matcher(manifest);

@@ -2,8 +2,8 @@
 
 Плагин безопасного обмена предметами между игроками через GUI для Paper и Purpur 1.16.5+.
 
-[![Release](https://img.shields.io/github/v/release/Dy6HiLa/pnTrades?label=Release)](https://github.com/Dy6HiLa/pnTrades/releases/latest)
-[![License](https://img.shields.io/github/license/Dy6HiLa/pnTrades?label=License)](LICENSE)
+[![Release](https://img.shields.io/github/v/release/pnFolder/pnTrades?label=Release)](https://github.com/pnFolder/pnTrades/releases/latest)
+[![License](https://img.shields.io/github/license/pnFolder/pnTrades?label=License)](LICENSE)
 
 ## Возможности
 
@@ -16,7 +16,7 @@
 
 ## Установка
 
-1. Скачайте `pnTrades-1.0.0.jar` из [релизов](https://github.com/Dy6HiLa/pnTrades/releases/latest).
+1. Скачайте `pnTrades-1.0.0.jar` из [релизов](https://github.com/pnFolder/pnTrades/releases/latest).
 2. Поместите JAR в папку `plugins` сервера.
 3. Перезапустите сервер.
 4. Настройте `plugins/pnTrades/config.yml` и `plugins/pnTrades/gui.yml` при необходимости.

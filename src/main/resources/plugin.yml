@@ -3,7 +3,7 @@ version: '${version}'
 main: ru.privatenull.PnTradesPlugin
 api-version: '1.16'
 authors: [privatenull]
-website: https://github.com/Dy6HiLa/pnTrades
+website: https://github.com/pnFolder/pnTrades
 description: Safe GUI trades between players
 commands:
   trade:
