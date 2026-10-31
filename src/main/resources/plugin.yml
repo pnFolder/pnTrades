@@ -5,6 +5,7 @@ api-version: '1.16'
 authors: [privatenull]
 website: https://github.com/pnFolder/pnTrades
 description: Safe GUI trades between players
+softdepend: [pnLibrary]
 commands:
   trade:
     description: Предложить игроку обмен или ответить на предложение
@@ -15,5 +16,5 @@ permissions:
     description: Использовать обмен между игроками
     default: true
   pntrades.admin:
-    description: Получать уведомления об обновлениях pnTrades
+    description: Администрирование pnTrades
     default: op
