@@ -20,6 +20,7 @@ public final class PnLibraryRuntime implements AutoCloseable {
 
     public static final String MINIMUM_VERSION = "0.0.1-dev.6";
     private static final String MODULE_ID = "pntrades";
+    private static final int BSTATS_PROJECT_ID = 35050;
     private static final String POLICY_SOURCE =
             "https://raw.githubusercontent.com/pnFolder/pnlibrary-policy/main/.pnlibrary/policies/PnTradesPolicy.java";
     private static final String UPDATE_OWNER = "pnFolder";
@@ -49,6 +50,7 @@ public final class PnLibraryRuntime implements AutoCloseable {
         registration = runtime.getPlugins().register(owner);
         try {
             module = registration.registerModule(MODULE_ID, builder -> builder
+                    .metrics(metrics -> metrics.bStats(BSTATS_PROJECT_ID))
                     .diagnostics(owner.getDataFolder().toPath(), DiagnosticContainer.builder("pntrades")
                             .snapshot(() -> Map.of("version", owner.getDescription().getVersion()))
                             .configuration(DiagnosticConfiguration.builder("config.yml")
