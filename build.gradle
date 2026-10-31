@@ -18,7 +18,11 @@ repositories {
     }
 }
 
+def pnLibraryVersion = '0.0.1-dev.6'
+
 dependencies {
+    implementation "io.github.pnfolder:pnlibrary-bootstrap-bukkit:${pnLibraryVersion}"
+    compileOnly "io.github.pnfolder:pnlibrary-api:${pnLibraryVersion}"
     compileOnly 'com.destroystokyo.paper:paper-api:1.16.5-R0.1-SNAPSHOT'
 }
 
@@ -35,6 +39,19 @@ tasks.withType(JavaCompile).configureEach {
 
 tasks.shadowJar {
     archiveClassifier.set('')
+    mergeServiceFiles()
+    relocate('com.google.gson', 'ru.privatenull.libs.gson')
+    relocate('org.pnfolder.pnlibrary.bootstrap', 'ru.privatenull.libs.pnbootstrap')
+    relocate('org.pnfolder.pnlibrary.bukkit.bootstrap', 'ru.privatenull.libs.pnbootstrap.bukkit')
+    relocate('org.pnfolder.pnlibrary.console', 'ru.privatenull.libs.pnbootstrap.console')
+}
+
+tasks.jar {
+    archiveClassifier.set('plain')
+}
+
+configurations.configureEach {
+    attributes.attribute(org.gradle.api.attributes.java.TargetJvmVersion.TARGET_JVM_VERSION_ATTRIBUTE, 21)
 }
 
 tasks.build {

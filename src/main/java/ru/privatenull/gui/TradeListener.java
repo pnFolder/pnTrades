@@ -12,15 +12,12 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import ru.privatenull.service.TradeManager;
 import ru.privatenull.service.TradeSession;
-import ru.privatenull.update.UpdateChecker;
 
 public final class TradeListener implements Listener {
     private final TradeManager manager;
-    private final UpdateChecker updateChecker;
 
-    public TradeListener(TradeManager manager, UpdateChecker updateChecker) {
+    public TradeListener(TradeManager manager) {
         this.manager = manager;
-        this.updateChecker = updateChecker;
     }
 
     @EventHandler
@@ -90,10 +87,5 @@ public final class TradeListener implements Listener {
         if (session != null) {
             manager.cancelFor(event.getPlayer(), session, "игрок вышел с сервера");
         }
-    }
-
-    @EventHandler
-    void onPlayerJoin(org.bukkit.event.player.PlayerJoinEvent event) {
-        updateChecker.notifyAdminOnJoin(event.getPlayer());
     }
 }
