@@ -10,7 +10,7 @@ import ru.privatenull.service.TradeManager;
 import org.pnfolder.pnlibrary.bukkit.bootstrap.PnLibraryBootstrap;
 import ru.privatenull.bootstrap.PnLibraryLifecycleListener;
 import ru.privatenull.integration.PnLibraryRuntime;
-import java.util.logging.Level;
+import ru.privatenull.log.Log;
 
 import java.util.Objects;
 
@@ -22,18 +22,18 @@ public final class PnTradesPlugin extends JavaPlugin {
 
     @Override
     public void onLoad() {
+        Log.fallback(getLogger());
         try {
             pnLibraryReady = PnLibraryBootstrap.ensureInstalled(this, PnLibraryRuntime.MINIMUM_VERSION);
         } catch (Throwable failure) {
-            getLogger().log(Level.SEVERE,
-                    "Не удалось автоматически подготовить pnLibrary. pnTrades не будет запущен.", failure);
+            Log.error("Не удалось автоматически подготовить pnLibrary. pnTrades не будет запущен.", failure);
         }
     }
 
     @Override
     public void onEnable() {
         if (!pnLibraryReady) {
-            getLogger().severe("pnLibrary не подготовлена: проверьте доступ к GitHub и ошибку загрузки выше.");
+            Log.error("pnLibrary не подготовлена: проверьте доступ к GitHub и ошибку загрузки выше.");
             getServer().getPluginManager().disablePlugin(this);
             return;
         }
@@ -41,7 +41,7 @@ public final class PnTradesPlugin extends JavaPlugin {
             pnRuntime = PnLibraryRuntime.connect(this);
             pnRuntime.register();
         } catch (Throwable failure) {
-            getLogger().log(Level.SEVERE, "pnLibrary не удалось включить или подключить к pnTrades.", failure);
+            Log.error("pnLibrary не удалось включить или подключить к pnTrades.", failure);
             getServer().getPluginManager().disablePlugin(this);
             return;
         }
@@ -67,7 +67,7 @@ public final class PnTradesPlugin extends JavaPlugin {
             try {
                 closing.close();
             } catch (Exception exception) {
-                getLogger().log(Level.WARNING, "Не удалось корректно закрыть контекст pnLibrary", exception);
+                Log.warning("Не удалось корректно закрыть контекст pnLibrary", exception);
             }
         }
         if (pnLibraryReady) PluginBanner.disabled(this, SUPPORT_DISCORD);

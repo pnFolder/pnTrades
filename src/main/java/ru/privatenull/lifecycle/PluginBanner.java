@@ -1,6 +1,7 @@
 package ru.privatenull.lifecycle;
 
 import org.bukkit.plugin.java.JavaPlugin;
+import ru.privatenull.log.Log;
 
 public final class PluginBanner {
     private static final String[] LOGO = createLogo();
@@ -33,13 +34,13 @@ public final class PluginBanner {
     }
 
     private static void print(JavaPlugin plugin, String state, String supportUrl) {
-        plugin.getLogger().info(" ");
-        for (String line : LOGO) plugin.getLogger().info(line);
-        plugin.getLogger().info(" ");
-        plugin.getLogger().info("pnTrades v" + plugin.getDescription().getVersion() + " | " + state);
+        Log.info(" ");
+        for (String line : LOGO) Log.info(line);
+        Log.info(" ");
+        Log.info("pnTrades v" + plugin.getDescription().getVersion() + " | " + state);
         if (supportUrl != null && !supportUrl.trim().isEmpty()) {
-            plugin.getLogger().info("Support: " + supportUrl);
+            Log.info("Support: " + supportUrl);
         }
-        plugin.getLogger().info(" ");
+        Log.info(" ");
     }
 }

@@ -3,6 +3,7 @@ package ru.privatenull.integration;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.pnfolder.pnlibrary.api.diagnostics.DiagnosticConfiguration;
 import org.pnfolder.pnlibrary.api.diagnostics.DiagnosticContainer;
+import org.pnfolder.pnlibrary.api.logging.PnLogger;
 import org.pnfolder.pnlibrary.api.plugin.ModuleContext;
 import org.pnfolder.pnlibrary.api.plugin.PluginRegistration;
 import org.pnfolder.pnlibrary.api.remote.PolicyErrorAction;
@@ -11,6 +12,7 @@ import org.pnfolder.pnlibrary.api.runtime.PnLibrary;
 import org.pnfolder.pnlibrary.api.runtime.PnLibraryIdentity;
 import org.pnfolder.pnlibrary.api.runtime.PnLibraryProvider;
 import org.pnfolder.pnlibrary.api.updates.UpdateChannel;
+import ru.privatenull.log.Log;
 
 import java.util.Map;
 import java.util.logging.Level;
@@ -70,6 +72,7 @@ public final class PnLibraryRuntime implements AutoCloseable {
                             .automaticDownload(false)
                             .configurationBackup(owner.getDataFolder().toPath(), "config.yml", "gui.yml")
                             .artifact("(?i)^pnTrades-[0-9].*\\.jar$", 17)));
+            Log.attach(moduleSink(module.getLogger()));
         } catch (RuntimeException failure) {
             closeRegistration();
             throw failure;
@@ -80,6 +83,7 @@ public final class PnLibraryRuntime implements AutoCloseable {
     public void close() {
         ModuleContext closing = module;
         module = null;
+        Log.attach(null);
         if (closing != null && !closing.isClosed()) {
             try {
                 closing.getLifecycle().disabled().show();
@@ -88,6 +92,30 @@ public final class PnLibraryRuntime implements AutoCloseable {
             }
         }
         closeRegistration();
+    }
+
+    private static Log.Sink moduleSink(PnLogger logger) {
+        return new Log.Sink() {
+            @Override
+            public void info(String message) {
+                logger.info(message);
+            }
+
+            @Override
+            public void success(String message) {
+                logger.success(message);
+            }
+
+            @Override
+            public void warning(String message) {
+                logger.warning(message);
+            }
+
+            @Override
+            public void error(String message, Throwable error) {
+                logger.error(message, error);
+            }
+        };
     }
 
     private void closeRegistration() {
