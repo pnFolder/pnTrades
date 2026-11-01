@@ -1,5 +1,6 @@
 package ru.privatenull;
 
+import org.pnfolder.pnlibrary.api.plugin.ModuleContext;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 import ru.privatenull.command.TradeCommand;
@@ -54,6 +55,10 @@ public final class PnTradesPlugin extends JavaPlugin {
         trade.setTabCompleter(command);
         getServer().getPluginManager().registerEvents(new TradeListener(tradeManager), this);
         PluginBanner.enabled(this, SUPPORT_DISCORD);
+    }
+
+    public ModuleContext module() {
+        return pnRuntime.module();
     }
 
     @Override

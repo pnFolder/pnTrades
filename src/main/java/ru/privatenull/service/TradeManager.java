@@ -1,5 +1,6 @@
 package ru.privatenull.service;
 
+import org.pnfolder.pnlibrary.api.tasks.TaskSpec;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -119,11 +120,14 @@ public final class TradeManager {
     }
 
     public void scheduleOfferChanged(TradeHolder holder, Player player, TradeSession session) {
-        plugin.getServer().getScheduler().runTask(plugin, () -> {
-            if (getSession(holder, player) == session) {
-                offerChanged(session);
-            }
-        });
+        plugin.module().getTasks().schedule(TaskSpec.builder()
+                .name("pntrades-offer-changed")
+                .action(task -> {
+                    if (getSession(holder, player) == session) {
+                        offerChanged(session);
+                    }
+                })
+                .build());
     }
 
     public void confirm(Player player, TradeSession session) {

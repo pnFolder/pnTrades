@@ -48,6 +48,10 @@ public final class PnLibraryRuntime implements AutoCloseable {
         return new PnLibraryRuntime(owner, runtime);
     }
 
+    public ModuleContext module() {
+        return module;
+    }
+
     public void register() {
         if (registration != null) throw new IllegalStateException("pnTrades уже зарегистрирован в pnLibrary");
         registration = runtime.getPlugins().register(owner);
