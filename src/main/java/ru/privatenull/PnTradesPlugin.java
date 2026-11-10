@@ -16,7 +16,7 @@ import ru.privatenull.log.Log;
 import java.util.Objects;
 
 public final class PnTradesPlugin extends JavaPlugin {
-    public static final String SUPPORT_DISCORD = "https://discord.gg/jqRFJC6WDM";
+    public static final String SUPPORT_DISCORD = "https://discord.gg/wYgprUUMhm";
     private TradeManager tradeManager;
     private boolean pnLibraryReady;
     private PnLibraryRuntime pnRuntime;
