@@ -1,6 +1,6 @@
 package ru.privatenull.service;
 
-import org.pnfolder.pnlibrary.api.tasks.TaskSpec;
+import org.pnfolder.pnlibrary.api.tasks.spec.TaskSpec;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
