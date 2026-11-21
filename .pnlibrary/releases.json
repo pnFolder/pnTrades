@@ -3,6 +3,29 @@
   "product": "pntrades",
   "releases": [
     {
+      "version": "1.1.0",
+      "channel": "stable",
+      "description": "Переход на pnLibrary 0.1.0-dev.6 (API 2): нужна новая библиотека.",
+      "changelogUrl": "https://github.com/PnFolder/pnTrades/blob/master/.pnlibrary/changelogs/1.1.0.md",
+      "publishedAt": "2026-11-21T15:48:49Z",
+      "api": {
+        "minimum": 2,
+        "maximum": 2
+      },
+      "artifacts": [
+        {
+          "file": "pnTrades-1.1.0.jar",
+          "platform": "BUKKIT",
+          "java": {
+            "minimum": 17
+          },
+          "url": "https://github.com/PnFolder/pnTrades/releases/download/v1.1.0/pnTrades-1.1.0.jar",
+          "sha256": "e4f384e0014266acf8f8fb6d8aba48d8e3194eb62ee83427e79754c6dd56bd4a",
+          "size": 399725
+        }
+      ]
+    },
+    {
       "version": "1.0.1",
       "channel": "stable",
       "description": "Подключение к pnLibrary 0.0.1-dev.6: обновления, диагностика, метрики и единый журнал.",
